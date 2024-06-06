@@ -1,0 +1,61 @@
+services:
+  app:
+    build: .
+    ports:
+      - "127.0.0.1:3000:3000"
+    volumes:
+      - "./:/app"
+    command: rails server -b 0.0.0.0 -p 3000
+    depends_on:
+      - db
+    links:
+      - db
+    networks:
+      - db
+    environment:
+      RAILS_ENV: production
+      DATABASE_HOST: db
+      DATABASE_NAME: devops_project
+      DATABASE_USER: devops_user
+      DATABASE_PASSWORD: devopass
+
+  tailwind:
+    build: .
+    volumes:
+      - "./:/app"
+    command: rails tailwindcss:watch
+    stdin_open: true
+
+  db:
+    image: mysql:latest
+    volumes:
+      - "db_data:/var/lib/mysql"
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: devops_project
+      MYSQL_USER: devops_user
+      MYSQL_PASSWORD: devopass
+    networks:
+      - db
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    ports:
+      - "8080:80"
+    environment:
+      PMA_HOST: db
+      MYSQL_ROOT_PASSWORD: root
+
+    links:
+      - db
+    networks:
+      - db
+
+networks:
+  db:
+    driver: bridge
+
+volumes:
+  db_data:
