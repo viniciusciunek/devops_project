@@ -2,17 +2,29 @@
 <html>
   <head>
     <title>App</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
-
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <%= csrf_meta_tags %> <%= csp_meta_tag %> <%= stylesheet_link_tag "tailwind" , "inter-font" %> <%= stylesheet_link_tag "application" %>
     <%= javascript_importmap_tags %>
   </head>
-
   <body>
-    <main class="container mx-auto mt-28 px-5 flex">
+    <main>
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
+      <div class="bg-blue-950 text-white rounded-b-md p-6 flex justify-around items-center flex-row">
+        <h1 class="font-bold text-2xl">AGENDÁUCARIA</h1>
+        <div>
+          <% if user_signed_in? %>
+            <%= link_to "Minha Conta", edit_user_registration_path %>
+            <%= button_to 'Sair', destroy_user_session_path, method: :delete %>
+            <%= current_user %>
+            <%= render PhlexUI::Button.new { "Button" } %>
+            render PhlexUI::Button.new { "Button" }
+          <% else %>
+            <%= link_to 'Logar' , new_user_session_path, class:"bg-red-500 rounded p-2"  %>
+            <%= link_to 'Cadastrar-se' , new_user_registration_path %>
+          <% end %>
+        </div>
+      </div>
       <%= yield %>
     </main>
   </body>
