@@ -1,0 +1,13 @@
+<div class="mx-auto md:w-2/3 w-full flex">
+  <div class="mx-auto">
+    <% if notice.present? %>
+      <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
+    <% end %>
+    <%= render @reservation %>
+    <%= link_to "Editar reserva", edit_reservation_path(@reservation), class: "rounded p-2 bg-blue-950 inline-block font-medium text-white uppercase" %>
+    <%= link_to "Voltar para lista de reservas", reservations_path, class: "rounded p-2 bg-blue-950 inline-block text-white uppercase font-medium"%>
+    <div class="inline-block">
+      <%= button_to "Excluir reserva", @reservation, method: :delete, class: "rounded p-2 bg-blue-950 bg-red-500 text-white uppercase font-medium" %>
+    </div>
+  </div>
+</div>

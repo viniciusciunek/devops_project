@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_06_06_155738) do
+ActiveRecord::Schema[7.1].define(version: 2024_06_09_212041) do
+  create_table "reservations", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "created_by"
+    t.date "date"
+    t.integer "days"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "bloco"
+    t.integer "apt"
+  end
+
   create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
