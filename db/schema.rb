@@ -20,4 +20,5 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_09_212041) do
     t.integer "bloco"
     t.integer "apt"
   end
+
 end

@@ -5,12 +5,13 @@ RUN apt-get update -qq && apt-get install -y build-essential default-libmysqlcli
 RUN mkdir /app
 WORKDIR /app
 
-RUN gem update --system
-
 COPY Gemfile /app/Gemfile
 COPY Gemfile.lock /app/Gemfile.lock
 
-RUN bundle update --bundler
+# RUN gem update --system
+
+# RUN bundle update
 RUN bundle install 
 
-CMD bash
+# CMD bash
+CMD ["pwd", "ls"]

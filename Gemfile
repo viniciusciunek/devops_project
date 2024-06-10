@@ -68,3 +68,9 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
+
+gem "rexml", "~> 3.2"
+
+gem "builder", "~> 3.2"
+
+gem "concurrent-ruby", "~> 1.3"

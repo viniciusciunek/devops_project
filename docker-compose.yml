@@ -13,18 +13,19 @@ services:
     networks:
       - db
     environment:
-      RAILS_ENV: production
       DATABASE_HOST: db
       DATABASE_NAME: devops_project
       DATABASE_USER: devops_user
       DATABASE_PASSWORD: devopass
 
-  tailwind:
-    build: .
-    volumes:
-      - "./:/app"
-    command: rails tailwindcss:watch
-    stdin_open: true
+  # tailwind:
+  #   build: .
+  #   volumes:
+  #     - "./:/app"
+  #   depends_on:
+  #     - app
+  #   command: rails tailwindcss:watch
+  #   stdin_open: true
 
   db:
     image: mysql:latest
