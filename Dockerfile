@@ -13,5 +13,4 @@ COPY Gemfile.lock /app/Gemfile.lock
 # RUN bundle update
 RUN bundle install 
 
-# CMD bash
-CMD ["pwd", "ls"]
+CMD bash
