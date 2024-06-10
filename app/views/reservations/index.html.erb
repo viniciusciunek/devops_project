@@ -8,12 +8,42 @@
     <h1 class="font-semibold text-4xl">Lista de Reservas Salão - Residencial Araucária</h1>
     <%= link_to "Fazer reserva", new_reservation_path, class: "bg-blue-950 text-white font-bold p-2 rounded uppercase" %>
   </div>
-  <div id="reservations" class="min-w-full">
-    <% @reservations.each do |reservation| %>
-      <%= render reservation %>
-      <p>
-        <%= link_to "Show this reservation", reservation, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-      </p>
-    <% end %>
+  <div id="reservations" class="m-2">
+    <table class="w-full  bg-white shadow-md rounded-lg overflow-hidden">
+      <thead class="bg-gray-200 text-gray-700">
+        <tr>
+          <th class="py-2 px-4 border-b">Reservado por</th>
+          <th class="py-2 px-4 border-b">Data</th>
+          <th class="py-2 px-4 border-b">Dias</th>
+          <th class="py-2 px-4 border-b">Apartamento</th>
+          <th class="py-2 px-4 border-b">Bloco</th>
+          <th class="py-2 px-4 border-b">Ações</th>
+        </tr>
+      </thead>
+      <tbody class="text-gray-800">
+        <% @reservations.each do |reservation| %>
+          <tr class="hover:bg-slate-50">
+            <td class="py-2 px-4 border-b text-center ">
+              <%= reservation.created_by %>
+            </td>
+            <td class="py-2 px-4 border-b text-center ">
+              <%= reservation.date %>
+            </td>
+            <td class="py-2 px-4 border-b text-center ">
+              <%= reservation.days %>
+            </td>
+            <td class="py-2 px-4 border-b text-center ">
+              <%= reservation.apt %>
+            </td>
+            <td class="py-2 px-4 border-b text-center ">
+              <%= reservation.bloco %>
+            </td>
+            <td class="py-2 px-4 border-b text-center ">
+              <%= link_to "+ DETALHES", reservation, class: "rounded p-2 bg-blue-950 inline-block font-medium text-white uppercase inline-block" %>
+            </td>
+          <% end %>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </div>
